@@ -29,7 +29,7 @@ export const createBooking = async (req, res) => {
     res.status(500).json({
       success: false,
       // message: err.message,
-      message: "Có lỗi xảy ra",
+      message: "Hãy nhập đầy đủ và chính xác thông tin!",
     });
     console.log(err);
   }
@@ -66,12 +66,12 @@ export const deleteBooking = async (req, res) => {
   const id = req.params.id;
 
   try {
-    // await Booking.findByIdAndDelete(id);
-    const booking = await Booking.findByIdAndUpdate(
-      id,
-      { isDelete: true },
-      { new: true }
-    );
+    const booking = await Booking.findByIdAndDelete(id);
+    // const booking = await Booking.findByIdAndUpdate(
+    //   id,
+    //   { isDelete: true },
+    //   { new: true }
+    // );
 
     if (!booking) {
       return res.status(404).json({

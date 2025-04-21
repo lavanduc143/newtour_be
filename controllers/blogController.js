@@ -50,12 +50,12 @@ export const deleteBlog = async (req, res) => {
   const id = req.params.id;
 
   try {
-    // await Blog.findByIdAndDelete(id);
-    const blog = await Blog.findByIdAndUpdate(
-      id,
-      { isDelete: true }, // Cập nhật thuộc tính isDelete
-      { new: true }
-    );
+    const blog = await Blog.findByIdAndDelete(id);
+    // const blog = await Blog.findByIdAndUpdate(
+    //   id,
+    //   { isDelete: true }, // Cập nhật thuộc tính isDelete
+    //   { new: true }
+    // );
 
     if (!blog) {
       return res.status(404).json({
@@ -102,7 +102,7 @@ export const getAllBlogByUser = async (req, res) => {
   const page = parseInt(req.query.page);
 
   try {
-    const blogs = await Blog.find({isDelete: false})
+    const blogs = await Blog.find({ isDelete: false })
       .skip(page * 8)
       .limit(8);
 
@@ -123,7 +123,7 @@ export const getAllBlogByUser = async (req, res) => {
 // Get all blog by admin
 export const getAllBlogByAdminNoDelete = async (req, res) => {
   try {
-    const blogs = await Blog.find({isDelete: false})
+    const blogs = await Blog.find({ isDelete: false });
 
     res.status(200).json({
       success: true,
@@ -141,7 +141,7 @@ export const getAllBlogByAdminNoDelete = async (req, res) => {
 
 export const getAllBlogByAdminDeleted = async (req, res) => {
   try {
-    const blogs = await Blog.find({isDelete: true})
+    const blogs = await Blog.find({ isDelete: true });
 
     res.status(200).json({
       success: true,
@@ -161,7 +161,7 @@ export const getAllBlogByAdminDeleted = async (req, res) => {
 export const getBlogCount = async (req, res) => {
   try {
     // const blogCount = await Blog.estimatedDocumentCount();
-    const blogCount = await Blog.countDocuments({ isDelete: false })
+    const blogCount = await Blog.countDocuments({ isDelete: false });
 
     res.status(200).json({
       success: true,
@@ -178,7 +178,7 @@ export const getBlogCount = async (req, res) => {
 // get blog by search
 export const getBlogBySearch = async (req, res) => {
   // Tạo điều kiện tìm kiếm ban đầu là một đối tượng rỗng
-  const searchConditions = {isDelete:false};
+  const searchConditions = { isDelete: false };
 
   // Kiểm tra từng trường và thêm vào điều kiện nếu có giá trị
   if (req.query.title) {

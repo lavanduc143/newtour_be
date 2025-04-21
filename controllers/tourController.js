@@ -58,13 +58,13 @@ export const deleteTour = async (req, res) => {
   const id = req.params.id;
 
   try {
-    // await Tour.findByIdAndDelete(id);
+    const tour = await Tour.findByIdAndDelete(id);
 
-    const tour = await Tour.findByIdAndUpdate(
-      id,
-      { isDelete: true }, // Cập nhật thuộc tính isDelete
-      { new: true }
-    );
+    // const tour = await Tour.findByIdAndUpdate(
+    //   id,
+    //   { isDelete: true }, // Cập nhật thuộc tính isDelete
+    //   { new: true }
+    // );
 
     if (!tour) {
       return res.status(404).json({
@@ -111,7 +111,7 @@ export const getAllTourByUser = async (req, res) => {
   const page = parseInt(req.query.page);
 
   try {
-    const tours = await Tour.find({isDelete: false})
+    const tours = await Tour.find({ isDelete: false })
       .populate("reviews")
       .skip(page * 16)
       .limit(16);
@@ -136,8 +136,7 @@ export const getAllTourByAdminNoDelete = async (req, res) => {
   const page = parseInt(req.query.page);
 
   try {
-    const tours = await Tour.find({isDelete: false})
-      .populate("reviews")
+    const tours = await Tour.find({ isDelete: false }).populate("reviews");
 
     res.status(200).json({
       success: true,
@@ -158,8 +157,7 @@ export const getAllTourByAdminDeleted = async (req, res) => {
   const page = parseInt(req.query.page);
 
   try {
-    const tours = await Tour.find({isDelete: true})
-      .populate("reviews")
+    const tours = await Tour.find({ isDelete: true }).populate("reviews");
 
     res.status(200).json({
       success: true,
@@ -178,7 +176,7 @@ export const getAllTourByAdminDeleted = async (req, res) => {
 // get tour by search
 export const getTourBySearch = async (req, res) => {
   // Tạo điều kiện tìm kiếm ban đầu là một đối tượng rỗng
-  const searchConditions = {isDelete: false};
+  const searchConditions = { isDelete: false };
 
   // Kiểm tra từng trường và thêm vào điều kiện nếu có giá trị
   if (req.query.city) {
@@ -214,7 +212,6 @@ export const getTourBySearch = async (req, res) => {
 
 // Get featured tour
 export const getFeaturedTour = async (req, res) => {
-
   const page = parseInt(req.query.page);
 
   try {
@@ -238,7 +235,6 @@ export const getFeaturedTour = async (req, res) => {
 };
 
 export const getDomesticTour = async (req, res) => {
-
   const page = parseInt(req.query.page);
 
   try {
@@ -282,7 +278,10 @@ export const getTourCount = async (req, res) => {
 // get tour counts with ForeignTours
 export const getForeignToursCount = async (req, res) => {
   try {
-    const tourCount = await Tour.countDocuments({ featured: true, isDelete: false });
+    const tourCount = await Tour.countDocuments({
+      featured: true,
+      isDelete: false,
+    });
 
     res.status(200).json({
       success: true,
@@ -299,7 +298,10 @@ export const getForeignToursCount = async (req, res) => {
 // get tour counts with DomesticTours
 export const getDomesticToursCount = async (req, res) => {
   try {
-    const tourCount = await Tour.countDocuments({ featured: false, isDelete: false });
+    const tourCount = await Tour.countDocuments({
+      featured: false,
+      isDelete: false,
+    });
 
     res.status(200).json({
       success: true,

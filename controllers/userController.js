@@ -96,11 +96,13 @@ export const deleteUser = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const user = await User.findByIdAndUpdate(
-      id,
-      { isDelete: true },
-      { new: true }
-    );
+    const user = await User.findByIdAndDelete(id);
+
+    // const user = await User.findByIdAndUpdate(
+    //   id,
+    //   { isDelete: true },
+    //   { new: true }
+    // );
 
     if (!user) {
       return res.status(404).json({
