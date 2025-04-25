@@ -153,3 +153,54 @@ export const getUserBookings = async (req, res) => {
     });
   }
 };
+
+//lấy danh sách người đặt theo tour
+export const getBookingsByTourId = async (req, res) => {
+  const tourId = req.params.tourId;
+
+  try {
+    const bookings = await Booking.find({ tourId, isDelete: false });
+
+    res.status(200).json({
+      success: true,
+      message: "Danh sách người đặt tour",
+      data: bookings,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Không lấy được danh sách người đặt",
+    });
+  }
+};
+
+// Cancel a booking (huỷ tour)
+export const cancelBooking = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const canceledBooking = await Booking.findByIdAndUpdate(
+      id,
+      { status: "canceled" },
+      { new: true }
+    );
+
+    if (!canceledBooking) {
+      return res.status(404).json({
+        success: false,
+        message: "Booking not found to cancel",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Booking cancelled successfully",
+      data: canceledBooking,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to cancel the booking",
+    });
+  }
+};

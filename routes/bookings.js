@@ -6,6 +6,8 @@ import {
   getBooking,
   getAllBooking,
   getUserBookings,
+  cancelBooking,
+  getBookingsByTourId,
 } from "../controllers/bookingController.js";
 import { verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 import { callback } from "../controllers/paymentController.js";
@@ -24,5 +26,8 @@ router.get("/", verifyAdmin, getAllBooking);
 router.get("/user/history", verifyUser, getUserBookings);
 // router.get("/user/history/:id", getUserBookings);
 router.post("/callback", callback);
+router.get("/byTour/:tourId", getBookingsByTourId);
+
+router.put("/cancel/:id", cancelBooking);
 
 export default router;
