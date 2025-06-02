@@ -16,13 +16,13 @@ export const createTour = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Sussessfully created a new tour",
+      message: "Tạo tour thành công",
       data: savedTour,
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Failed created a new tour. Try again",
+      message: "Có lỗi xảy ra, vui lòng thử lại",
     });
   }
 };
@@ -42,13 +42,13 @@ export const updateTour = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Sussessfully updated the tour",
+      message: "Cập nhật tour thành công",
       data: updatedTour,
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Failed update a tour. Try again",
+      message: "Có lỗi xảy ra, vui lòng thử lại",
     });
   }
 };
@@ -69,18 +69,18 @@ export const deleteTour = async (req, res) => {
     if (!tour) {
       return res.status(404).json({
         success: false,
-        message: "User not found",
+        message: "Không tìm thấy user",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: "Sussessfully delete the tour",
+      message: "Xoá thành công",
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Failed delete a tour. Try again",
+      message: "Có lỗi xảy ra, vui lòng thử lại",
     });
   }
 };

@@ -21,7 +21,7 @@ export const createBooking = async (req, res) => {
     // Trả về URL để frontend xử lý việc chuyển hướng
     res.status(200).json({
       success: true,
-      message: "Booking created successfully",
+      message: "Đặt tour thành công",
       tour: savedBooking,
       paymentUrl: paymentUrl,
     });
@@ -50,13 +50,13 @@ export const updateBooking = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Sussessfully updated the booking",
+      message: "Cập nhật booking thành công",
       data: updateBooking,
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Failed update a booking. Try again",
+      message: "Có lỗi xảy ra vui lòng thử lại",
     });
   }
 };
@@ -82,12 +82,12 @@ export const deleteBooking = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Sussessfully delete the booking",
+      message: "Xoá booking thành công",
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Failed delete a booking. Try again",
+      message: "Có lỗi xảy ra vui lòng thử lại",
     });
   }
 };

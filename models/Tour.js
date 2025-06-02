@@ -47,11 +47,11 @@ const tourSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    // status: {
-    //   type: String,
-    //   enum: ["available", "unavailable "],
-    //   default: "available",
-    // },
+    status: {
+      type: String,
+      enum: ["available", "unavailable "],
+      default: "available",
+    },
     isDelete: { type: Boolean, default: false },
   },
   { timestamps: true }

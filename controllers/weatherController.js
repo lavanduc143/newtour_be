@@ -3,7 +3,7 @@ import axios from "axios";
 export const weatherAPI = async (req, res) => {
   const { city, district } = req.query; // Nhận thành phố và quận từ query string
   if (!city) {
-    return res.status(400).json({ error: "City is required" });
+    return res.status(400).json({ error: "Lỗi địa điểm" });
   }
   try {
     // Nếu có district, kết hợp district và city vào tên đầy đủ cho việc truy vấn

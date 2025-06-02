@@ -8,13 +8,13 @@ export const createBlog = async (req, res) => {
     const savedBlog = await newBlog.save();
     res.status(200).json({
       success: true,
-      message: "Create blog successfully",
+      message: "Tạo blog thành công",
       data: savedBlog,
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Create blog failed",
+      message: "Có lỗi xảy ra vui lòng thử lại",
     });
   }
 };
@@ -34,13 +34,13 @@ export const updateBlog = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Sussessfully updated the blog",
+      message: "Cập nhật blog thành công",
       data: updatedBlog,
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Failed update a blog. Try again",
+      message: "Có lỗi xảy ra vui lòng thử lại",
     });
   }
 };
@@ -66,12 +66,12 @@ export const deleteBlog = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Sussessfully delete the blog",
+      message: "Xoá blog thành công",
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Failed delete a blog. Try again",
+      message: "Có lỗi xảy ra vui lòng thử lại",
     });
   }
 };
