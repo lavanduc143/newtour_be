@@ -205,12 +205,12 @@ export const updateFavorites = async (req, res) => {
         await user.save();
         return res.status(200).json({
           success: true,
-          message: "Tour added to favorites",
+          message: "Đã thêm vào tour yêu thích",
         });
       } else {
         return res.status(400).json({
           success: false,
-          message: "Tour is already in favorites",
+          message: "Đã thêm vào tour yêu thích",
         });
       }
     } else if (action === "remove") {
@@ -221,12 +221,12 @@ export const updateFavorites = async (req, res) => {
         await user.save();
         return res.status(200).json({
           success: true,
-          message: "Tour removed from favorites",
+          message: "Đã xoá tour khỏi danh sách yêu thích",
         });
       } else {
         return res.status(400).json({
           success: false,
-          message: "Tour not found in favorites",
+          message: "Không thấy dữ liệu",
         });
       }
     } else {
@@ -238,7 +238,7 @@ export const updateFavorites = async (req, res) => {
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: "Failed to update favorites. Try again.",
+      message: "Có lỗi xảy ra",
     });
   }
 };

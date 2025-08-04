@@ -121,17 +121,17 @@ export const sendPaymentConfirmationEmail = async (email, bookingDetails) => {
         
         <div style="text-align: center; margin-top: 30px; border-top: 1px solid #e0e0e0; padding-top: 20px;">
           <p style="font-size: 14px; color: #777;">Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi:</p>
-          <p style="font-size: 14px; margin: 5px 0;"><strong>Email:</strong> minhhoangle031211@gmail.com</p>
-          <p style="font-size: 14px; margin: 5px 0;"><strong>Hotline:</strong> 0386343954</p>
+          <p style="font-size: 14px; margin: 5px 0;"><strong>Email:</strong> lavanduc143@gmail.com</p>
+          <p style="font-size: 14px; margin: 5px 0;"><strong>Hotline:</strong> 0901780640</p>
         </div>
         
         <footer style="text-align: center; margin-top: 20px; font-size: 12px; color: #999;">
-          <p>© 2024 Tour Company. All rights reserved.</p>
+          <p>© 2025 Tour Company. All rights reserved.</p>
         </footer>
       </div>
     `,
   };
-  
+
   try {
     await transporter.sendMail(mailOptions);
     console.log("Payment confirmation email sent successfully!");
